@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [location, setLocation] = useState("");
+  const [searched, setSearched] = useState(false);
 
   useEffect(() => {
     let input = document.getElementById("pac-input");
@@ -16,12 +17,14 @@ function App() {
   });
 
   return (
-    <div className="main-div">
+    <div
+      id="main-div"
+      className={`main-div ${{ searched } ? "div-move-up" : ""}`}
+    >
       <h1>Enter Your Location</h1>
       <form
-        onSubmit={(event) => {
-          let div = document.getElementsByClassName("main-div");
-          div.classList.add("div-move-up");
+        onSubmit={() => {
+          setSearched(true);
         }}
       >
         <input
