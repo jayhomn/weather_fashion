@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { Animated } from "react-animated-css";
 
 function App() {
   const [location, setLocation] = useState("");
@@ -17,16 +18,9 @@ function App() {
   });
 
   return (
-    <div
-      id="main-div"
-      className={`main-div ${{ searched } ? "div-move-up" : ""}`}
-    >
-      <h1>Enter Your Location</h1>
-      <form
-        onSubmit={() => {
-          setSearched(true);
-        }}
-      >
+    <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={!searched}>
+      <div id="main-div" className="main-div">
+        <h1>Enter Your Location</h1>
         <input
           id="pac-input"
           className="search-bar"
@@ -36,9 +30,16 @@ function App() {
             setLocation(event.target.value);
           }}
         />
-        <input id="submit-btn" className="submit-btn" type="submit" />
-      </form>
-    </div>
+        <input
+          id="submit-btn"
+          className="submit-btn"
+          type="button"
+          onClick={() => {
+            setSearched(true);
+          }}
+        />
+      </div>
+    </Animated>
   );
 }
 
