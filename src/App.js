@@ -16,7 +16,7 @@ function App() {
   const handleSearch = () => {
     setSearched(true);
     axios(
-      `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=42ae5bc7019f475d94e548841ac2c7bb`
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=42ae5bc7019f475d94e548841ac2c7bb`
     )
       .then(function (response) {
         let temp = response.data["main"]["feels_like"];
@@ -31,7 +31,7 @@ function App() {
         setWeatherAfterSearch(weather);
         setTemperature(temp);
         setWeatherIcon(
-          `http://openweathermap.org/img/wn/${response.data["weather"][0]["icon"]}@2x.png`
+          `https://openweathermap.org/img/wn/${response.data["weather"][0]["icon"]}@2x.png`
         );
         axios(
           `https://www.googleapis.com/customsearch/v1?q=${weather}+outfit+men&num=10&searchType=image&key=AIzaSyCePRC6pC81oWNEa-mqSfDPgYy3x39168E&cx=000700725034361579724:fdsgnzu8lts`
