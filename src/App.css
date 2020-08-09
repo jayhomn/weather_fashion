@@ -4,6 +4,12 @@ h1 {
   display: block;
 }
 
+h2 {
+  font-weight: 100;
+  font-size: 32px;
+  display: block;
+}
+
 .main-div {
   position: absolute;
   opacity: 1;
@@ -11,6 +17,17 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out; /** Chrome & Safari **/
+  -moz-transition: all 0.6s ease-in-out; /** Firefox **/
+  -o-transition: all 0.6s ease-in-out; /** Opera **/
+}
+
+.main-div-searched {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   transition: all 0.6s ease-in-out;
   -webkit-transition: all 0.6s ease-in-out; /** Chrome & Safari **/
   -moz-transition: all 0.6s ease-in-out; /** Firefox **/
@@ -34,4 +51,44 @@ h1 {
   width: 0;
   height: 0;
   padding: 0;
+}
+
+.search-bar-searched {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  text-align: center;
+  display: block;
+  font: inherit;
+  border: 0;
+  outline: 0;
+  border-radius: 5rem;
+  background-color: #eeeeee;
+  height: 46px;
+  width: 340px;
+  font-size: 16px;
+  padding: 4px 24px;
+}
+
+.weather-icon {
+  height: 105px;
+}
+
+.parent-main-div-searched {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 40px;
+}
+
+.image-gallery {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-gallery img {
+  height: 500px;
+  margin: 8px;
+  flex: 1;
 }
