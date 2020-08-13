@@ -18,7 +18,7 @@ function App() {
   const handleSearch = () => {
     setSearched(true);
     axios(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${process.env.weatherApi}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
     )
       .then(function (response) {
         let temp = response.data["main"]["feels_like"];
@@ -36,7 +36,7 @@ function App() {
           `https://openweathermap.org/img/wn/${response.data["weather"][0]["icon"]}@2x.png`
         );
         axios(
-          `https://www.googleapis.com/customsearch/v1?q=${weather}+outfit+men&num=10&searchType=image&key=${process.env.googleApi}&cx=${process.env.customSearch}`
+          `https://www.googleapis.com/customsearch/v1?q=${weather}+outfit+men&num=10&searchType=image&key=${process.env.REACT_APP_GOOGLE_API}&cx=${process.env.REACT_APP_CUSTOM_SEARCH}`
         )
           .then(function (response) {
             let imageResults = response.data["items"];
@@ -56,7 +56,7 @@ function App() {
 
   const fetchMoreData = () => {
     axios(
-      `https://www.googleapis.com/customsearch/v1?q=${weatherAfterSearch}+outfit+men&num=10&searchType=image&start=${offset}&key=${process.env.googleApi}&cx=${process.env.customSearch}`
+      `https://www.googleapis.com/customsearch/v1?q=${weatherAfterSearch}+outfit+men&num=10&searchType=image&start=${offset}&key=${process.env.REACT_APP_GOOGLE_API}&cx=${process.env.REACT_APP_CUSTOM_SEARCH}`
     )
       .then(function (response) {
         let imageResults = response.data["items"];
