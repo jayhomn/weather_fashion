@@ -15,6 +15,9 @@ function App() {
   const [weatherApi, setWeatherApi] = useState("");
   const [googleApi, setGoogleApi] = useState("");
   const [customSearch, setCustomSearch] = useState("");
+  setWeatherApi(process.env.weatherApi);
+  setGoogleApi(process.env.googleApi);
+  setCustomSearch(process.env.customSearch);
 
   const handleSearch = () => {
     setSearched(true);
@@ -73,10 +76,6 @@ function App() {
   };
 
   useEffect(() => {
-    setWeatherApi(process.env.weatherApi);
-    setGoogleApi(process.env.googleApi);
-    setCustomSearch(process.env.customSearch);
-
     let input = document.getElementById("pac-input");
 
     input.addEventListener("keyup", function (event) {
