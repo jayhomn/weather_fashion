@@ -12,17 +12,11 @@ function App() {
   const [images, setImages] = useState([]);
   const [offset, setOffset] = useState(11);
   const [weatherAfterSearch, setWeatherAfterSearch] = useState("");
-  const [weatherApi, setWeatherApi] = useState("");
-  const [googleApi, setGoogleApi] = useState("");
-  const [customSearch, setCustomSearch] = useState("");
-  setWeatherApi(process.env.weatherApi);
-  setGoogleApi(process.env.googleApi);
-  setCustomSearch(process.env.customSearch);
 
   const handleSearch = () => {
     setSearched(true);
     axios(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${weatherApi}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${process.env.weatherApi}`
     )
       .then(function (response) {
         let temp = response.data["main"]["feels_like"];
@@ -40,7 +34,7 @@ function App() {
           `https://openweathermap.org/img/wn/${response.data["weather"][0]["icon"]}@2x.png`
         );
         axios(
-          `https://www.googleapis.com/customsearch/v1?q=${weather}+outfit+men&num=10&searchType=image&key=${googleApi}&cx=${customSearch}`
+          `https://www.googleapis.com/customsearch/v1?q=${weather}+outfit+men&num=10&searchType=image&key=${process.env.googleApi}&cx=${process.env.customSearch}`
         )
           .then(function (response) {
             let imageResults = response.data["items"];
@@ -60,7 +54,7 @@ function App() {
 
   const fetchMoreData = () => {
     axios(
-      `https://www.googleapis.com/customsearch/v1?q=${weatherAfterSearch}+outfit+men&num=10&searchType=image&start=${offset}&key=${googleApi}&cx=${customSearch}`
+      `https://www.googleapis.com/customsearch/v1?q=${weatherAfterSearch}+outfit+men&num=10&searchType=image&start=${offset}&key=${process.env.googleApi}&cx=${process.env.customSearch}`
     )
       .then(function (response) {
         let imageResults = response.data["items"];
