@@ -3,7 +3,6 @@ import "./App.css";
 import { Animated } from "react-animated-css";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
-import aws from "aws-sdk";
 
 function App() {
   const [location, setLocation] = useState("");
@@ -74,15 +73,9 @@ function App() {
   };
 
   useEffect(() => {
-    let keys = new aws.S3({
-      weatherApi: process.env.weatherApi,
-      googleApi: process.env.googleApi,
-      customSearch: process.env.customSearch,
-    });
-
-    setWeatherApi(keys.weatherApi);
-    setGoogleApi(keys.googleApi);
-    setCustomSearch(keys.customSearch);
+    setWeatherApi(process.env.weatherApi);
+    setGoogleApi(process.env.googleApi);
+    setCustomSearch(process.env.customSearch);
 
     let input = document.getElementById("pac-input");
 
@@ -92,7 +85,7 @@ function App() {
         document.getElementById("submit-btn").click();
       }
     });
-  });
+  }, []);
 
   return (
     <div className="main-canvas">
