@@ -3,7 +3,7 @@ import "./App.css";
 import { Animated } from "react-animated-css";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
-require("dotenv").config();
+import dotenv from "dotenv";
 
 function App() {
   const [location, setLocation] = useState("");
@@ -13,6 +13,7 @@ function App() {
   const [images, setImages] = useState([]);
   const [offset, setOffset] = useState(11);
   const [weatherAfterSearch, setWeatherAfterSearch] = useState("");
+  dotenv.config();
 
   const handleSearch = () => {
     setSearched(true);
