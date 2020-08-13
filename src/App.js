@@ -3,6 +3,7 @@ import "./App.css";
 import { Animated } from "react-animated-css";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
+require("dotenv").config();
 
 function App() {
   const [location, setLocation] = useState("");
