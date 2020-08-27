@@ -98,7 +98,7 @@ function App() {
 
   return (
     <div>
-      <h1>Dressi</h1>
+      <h2 className="title">Dressi</h2>
       <div className="main-canvas">
         {!searched && (
           <Animated
