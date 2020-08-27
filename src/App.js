@@ -13,10 +13,23 @@ function App() {
   const [images, setImages] = useState([]);
   const [offset, setOffset] = useState(11);
   const [weatherAfterSearch, setWeatherAfterSearch] = useState("");
+  const [menChoice, setMenChoice] = useState("choice");
+  const [womenChoice, setWomenChoice] = useState("");
   dotenv.config();
+
+  const toggleGenderChoice = () => {
+    if (menChoice === "choice") {
+      setMenChoice("");
+      setWomenChoice("choice");
+    } else {
+      setMenChoice("choice");
+      setWomenChoice("");
+    }
+  };
 
   const handleSearch = () => {
     setSearched(true);
+    const gender = menChoice === "choice" ? "men" : "women";
     axios(
       `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
     )
@@ -36,7 +49,7 @@ function App() {
           `https://openweathermap.org/img/wn/${response.data["weather"][0]["icon"]}@2x.png`
         );
         axios(
-          `https://www.googleapis.com/customsearch/v1?q=${weather}+outfit+men&num=10&searchType=image&key=${process.env.REACT_APP_GOOGLE_API}&cx=${process.env.REACT_APP_CUSTOM_SEARCH}`
+          `https://www.googleapis.com/customsearch/v1?q=${weather}+outfit+${gender}&num=10&searchType=image&key=${process.env.REACT_APP_GOOGLE_API}&cx=${process.env.REACT_APP_CUSTOM_SEARCH}`
         )
           .then(function (response) {
             let imageResults = response.data["items"];
@@ -55,8 +68,9 @@ function App() {
   };
 
   const fetchMoreData = () => {
+    const gender = menChoice === "choice" ? "men" : "women";
     axios(
-      `https://www.googleapis.com/customsearch/v1?q=${weatherAfterSearch}+outfit+men&num=10&searchType=image&start=${offset}&key=${process.env.REACT_APP_GOOGLE_API}&cx=${process.env.REACT_APP_CUSTOM_SEARCH}`
+      `https://www.googleapis.com/customsearch/v1?q=${weatherAfterSearch}+outfit+${gender}&num=10&searchType=image&start=${offset}&key=${process.env.REACT_APP_GOOGLE_API}&cx=${process.env.REACT_APP_CUSTOM_SEARCH}`
     )
       .then(function (response) {
         let imageResults = response.data["items"];
@@ -101,6 +115,21 @@ function App() {
                 setLocation(event.target.value);
               }}
             />
+            <input
+              class="react-switch-checkbox"
+              id="react-switch-new"
+              type="checkbox"
+            />
+            <label
+              onClick={toggleGenderChoice}
+              class="react-switch-label"
+              for="react-switch-new"
+              on
+            >
+              <span className={menChoice}>Men</span>
+              <span>|</span>
+              <span className={womenChoice}>Women</span>
+            </label>
             <input
               id="submit-btn"
               className="submit-btn"
