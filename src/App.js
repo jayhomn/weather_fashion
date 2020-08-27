@@ -97,68 +97,41 @@ function App() {
   }, []);
 
   return (
-    <div className="main-canvas">
-      {!searched && (
-        <Animated
-          animationIn="fadeIn"
-          animationOut="fadeOut"
-          isVisible={!searched}
-        >
-          <div id="main-div" className="main-div">
-            <h1>Enter Your Location</h1>
-            <input
-              id="pac-input"
-              className="search-bar"
-              type="text"
-              value={location}
-              onChange={(event) => {
-                setLocation(event.target.value);
-              }}
-            />
-            <input
-              class="react-switch-checkbox"
-              id="react-switch-new"
-              type="checkbox"
-            />
-            <label
-              onClick={toggleGenderChoice}
-              class="react-switch-label"
-              for="react-switch-new"
-              on
-            >
-              <span className={menChoice}>Men</span>
-              <span>|</span>
-              <span className={womenChoice}>Women</span>
-            </label>
-            <input
-              id="submit-btn"
-              className="submit-btn"
-              type="button"
-              onClick={handleSearch}
-            />
-          </div>
-        </Animated>
-      )}
-      {searched && (
-        <Animated>
-          <div className="parent-main-div-searched">
-            <div className="main-div-searched">
-              <img
-                className="weather-icon"
-                src={weatherIcon}
-                alt="Weather icon"
-              />
-              <h2>{temperature + "°C"}</h2>
+    <div>
+      <h1>Dressi</h1>
+      <div className="main-canvas">
+        {!searched && (
+          <Animated
+            animationIn="fadeIn"
+            animationOut="fadeOut"
+            isVisible={!searched}
+          >
+            <div id="main-div" className="main-div">
+              <h1>Enter Your Location</h1>
               <input
                 id="pac-input"
-                className="search-bar-searched"
+                className="search-bar"
                 type="text"
-                placeholder="Enter Your Location"
                 value={location}
                 onChange={(event) => {
                   setLocation(event.target.value);
                 }}
               />
+              <input
+                class="react-switch-checkbox"
+                id="react-switch-new"
+                type="checkbox"
+              />
+              <label
+                onClick={toggleGenderChoice}
+                class="react-switch-label"
+                for="react-switch-new"
+                on
+              >
+                <span className={menChoice}>Men</span>
+                <span>|</span>
+                <span className={womenChoice}>Women</span>
+              </label>
               <input
                 id="submit-btn"
                 className="submit-btn"
@@ -166,19 +139,49 @@ function App() {
                 onClick={handleSearch}
               />
             </div>
-            <div className="image-gallery">
-              <InfiniteScroll
-                dataLength={images.length}
-                next={fetchMoreData}
-                hasMore={true}
-                loader={<h4>Loading...</h4>}
-              >
-                {images}
-              </InfiniteScroll>
+          </Animated>
+        )}
+        {searched && (
+          <Animated>
+            <div className="parent-main-div-searched">
+              <div className="main-div-searched">
+                <img
+                  className="weather-icon"
+                  src={weatherIcon}
+                  alt="Weather icon"
+                />
+                <h2>{temperature + "°C"}</h2>
+                <input
+                  id="pac-input"
+                  className="search-bar-searched"
+                  type="text"
+                  placeholder="Enter Your Location"
+                  value={location}
+                  onChange={(event) => {
+                    setLocation(event.target.value);
+                  }}
+                />
+                <input
+                  id="submit-btn"
+                  className="submit-btn"
+                  type="button"
+                  onClick={handleSearch}
+                />
+              </div>
+              <div className="image-gallery">
+                <InfiniteScroll
+                  dataLength={images.length}
+                  next={fetchMoreData}
+                  hasMore={true}
+                  loader={<h4>Loading...</h4>}
+                >
+                  {images}
+                </InfiniteScroll>
+              </div>
             </div>
-          </div>
-        </Animated>
-      )}
+          </Animated>
+        )}
+      </div>
     </div>
   );
 }
