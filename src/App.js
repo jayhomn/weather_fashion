@@ -173,6 +173,7 @@ function App() {
                   dataLength={images.length}
                   next={fetchMoreData}
                   hasMore={true}
+                  scrollThreshold="1"
                   loader={<h4>Loading...</h4>}
                 >
                   {images}
