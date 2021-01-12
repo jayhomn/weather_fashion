@@ -1,3 +1,11 @@
+weather_fashion (Dressi) is a webapp that aims to provide the user fashion inspiration that is appropriate for the weather at your location
+
+Built using React and Node
+
+APIs: openweathermap and Google Custom Image Search
+
+You can access it here: https://weather-fashion.herokuapp.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
